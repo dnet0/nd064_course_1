@@ -9,8 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
-      tag: alpine
+      app: techtrends
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,8 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
-        tag: alpine
+        app: techtrends
     spec:
       containers:
       - image: techtrends:latest
@@ -28,6 +26,14 @@ spec:
         ports:
         - containerPort: 3111
           protocol: TCP
+        livenessProbe:
+           httpGet:
+             path: /healthz
+             port: 3111
+        readinessProbe:
+           httpGet:
+             path: /healthz
+             port: 3111
         resources:
           limits:
             cpu: 500m
