@@ -1,0 +1,16 @@
+namespace:
+  name: prod
+service:
+  port: 7111
+  protocol: TCP
+  type: ClusterIP
+replicaCount: 5
+image:
+  pullPolicy: Always
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 350m
+    memory: 128Mi
