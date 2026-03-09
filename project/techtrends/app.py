@@ -49,8 +49,8 @@ def get_amount_post():
 app.config['SECRET_KEY'] = 'your secret key'
 
 # Define the heltz endpoint
-@app.route('/heltz')
-def heltz():
+@app.route('/healthz')
+def healthz():
     response = app.response_class(
         response=json.dumps({"result":"OK - healthy"}),
         status=200,
