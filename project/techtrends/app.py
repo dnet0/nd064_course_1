@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Configurar logging global
 logging.basicConfig(
     level=logging.DEBUG,  # Captura DEBUG
-    format='%(levelname)s:%(name)s:%(asctime)s, %(message)s'
+    format='%(levelname)s:%(name)s:%(asctime)s, %(message)s',
     handlers=[
         logging.StreamHandler(sys.stdout),
         logging.StreamHandler(sys.stderr)
@@ -90,7 +90,7 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
-      app.logger.info("A non-existing article is accessed and a 404 page is returned.")
+      app.logger.error("A non-existing article is accessed and a 404 page is returned.")
       return render_template('404.html'), 404
     else:
       app.logger.info(f"Article \"{post['title']}\" retrieved!")
